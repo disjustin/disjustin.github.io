@@ -1,9 +1,17 @@
-import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { useState, useCallback } from 'react'
 import Terminal from './components/Terminal'
+import HomePage from './pages/HomePage'
+import AboutPage from './pages/AboutPage'
+import ResumePage from './pages/ResumePage'
+import BlogPage from './pages/BlogPage'
+import GuidesPage from './pages/GuidesPage'
 import './App.css'
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('home')
+function AppContent() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [commandHistory, setCommandHistory] = useState([])
 
   const randomFacts = [
@@ -17,31 +25,30 @@ function App() {
     "Fact: Linux was originally developed as a hobby project by Linus Torvalds in 1991."
   ]
 
-  const [displayedFacts, setDisplayedFacts] = useState([])
-
-  useEffect(() => {
-    // Select 4 random facts on mount
-    const shuffled = [...randomFacts].sort(() => 0.5 - Math.random())
-    setDisplayedFacts(shuffled.slice(0, 4))
-  }, [])
-
   const handleCommand = (command) => {
     const cmd = command.trim().toLowerCase()
+    const timestamp = new Date()
 
-    setCommandHistory(prev => [...prev, { command, timestamp: new Date() }])
+    setCommandHistory(prev => [...prev, { command, timestamp, type: 'command' }])
 
     if (cmd === 'cd /about' || cmd === 'cd about') {
-      setCurrentPage('about')
+      navigate('/about')
+      return { type: 'success', content: 'Navigated to /about' }
     } else if (cmd === 'cd /resume' || cmd === 'cd resume') {
-      setCurrentPage('resume')
+      navigate('/resume')
+      return { type: 'success', content: 'Navigated to /resume' }
     } else if (cmd === 'cd /blog' || cmd === 'cd blog') {
-      setCurrentPage('blog')
+      navigate('/blog')
+      return { type: 'success', content: 'Navigated to /blog' }
     } else if (cmd === 'cd /guides' || cmd === 'cd guides') {
-      setCurrentPage('guides')
+      navigate('/guides')
+      return { type: 'success', content: 'Navigated to /guides' }
     } else if (cmd === 'cd ~' || cmd === 'cd /' || cmd === 'cd' || cmd === 'cd /home') {
-      setCurrentPage('home')
+      navigate('/')
+      return { type: 'success', content: 'Navigated to home' }
     } else if (cmd === 'clear' || cmd === 'cls') {
       setCommandHistory([])
+      return null
     } else if (cmd === 'help') {
       return {
         type: 'help',
@@ -64,15 +71,39 @@ function App() {
     return null
   }
 
+  const addToHistory = (item) => {
+    setCommandHistory(prev => [...prev, item])
+  }
+
+  const toggleSidebar = useCallback(() => {
+    setSidebarOpen(prev => !prev)
+  }, [])
+
   return (
-    <div className="app">
-      <Terminal
-        currentPage={currentPage}
-        onCommand={handleCommand}
-        commandHistory={commandHistory}
-        randomFacts={displayedFacts}
-      />
-    </div>
+    <Terminal
+      sidebarOpen={sidebarOpen}
+      toggleSidebar={toggleSidebar}
+      onCommand={handleCommand}
+      commandHistory={commandHistory}
+      addToHistory={addToHistory}
+      currentPath={location.pathname}
+    >
+      <Routes>
+        <Route path="/" element={<HomePage randomFacts={randomFacts} />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/resume" element={<ResumePage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/guides" element={<GuidesPage />} />
+      </Routes>
+    </Terminal>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   )
 }
 

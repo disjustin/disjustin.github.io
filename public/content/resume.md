@@ -77,6 +77,5 @@
 
 ## Contact
 
-- Email: <justindavidwong@gmail.com>
 - GitHub: github.com/disjustin
 - LinkedIn: linkedin.com/in/justinwong-ee

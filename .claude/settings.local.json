@@ -11,7 +11,8 @@
       "Bash(yarn build)",
       "Bash(yarn dev)",
       "Bash(yarn remove:*)",
-      "Bash(yarn add marked dompurify)"
+      "Bash(yarn add marked dompurify)",
+      "Bash(yarn add:*)"
     ],
     "defaultMode": "acceptEdits"
   }
