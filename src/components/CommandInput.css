@@ -1,0 +1,29 @@
+.command-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #0c0c0c;
+  padding: 12px;
+  border: 1px solid #00ff00;
+  border-radius: 4px;
+}
+
+.prompt-symbol {
+  color: #00ff00;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.command-field {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  outline: none;
+}
+
+.command-field::placeholder {
+  color: #555;
+}

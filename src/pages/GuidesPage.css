@@ -1,0 +1,77 @@
+.guides-page {
+  color: #00ff00;
+}
+
+.guides-page h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #00ff00;
+}
+
+.guides-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.no-guides {
+  color: #888;
+  font-size: 14px;
+}
+
+.guide-item {
+  background-color: #1a1a1a;
+  padding: 12px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.guide-item:hover {
+  border-color: #00ff00;
+  background-color: #0f0f0f;
+}
+
+.guide-date {
+  color: #888;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.guide-title {
+  color: #8be9fd;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.guide-content {
+  animation: fadeIn 0.3s;
+}
+
+.back-button {
+  background-color: #1a1a1a;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+
+.back-button:hover {
+  background-color: #00ff00;
+  color: #0c0c0c;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

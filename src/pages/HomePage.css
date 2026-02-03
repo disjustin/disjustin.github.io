@@ -1,0 +1,76 @@
+.home-page {
+  color: #00ff00;
+}
+
+.ascii-art {
+  color: #00ff00;
+  font-size: 10px;
+  line-height: 1;
+  margin: 0 0 20px 0;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.welcome-text {
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.welcome-text p {
+  margin: 6px 0;
+}
+
+.facts-section {
+  margin: 24px 0;
+}
+
+.facts-section h3 {
+  color: #00ff00;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.facts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fact-item {
+  color: #8be9fd;
+  font-size: 13px;
+  padding-left: 8px;
+  line-height: 1.4;
+}
+
+.quick-commands {
+  margin: 24px 0;
+}
+
+.quick-commands h3 {
+  color: #00ff00;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.commands-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.command-item {
+  background-color: #1a1a1a;
+  padding: 8px 12px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #ffff00;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.command-item:hover {
+  border-color: #00ff00;
+  background-color: #0f0f0f;
+}
